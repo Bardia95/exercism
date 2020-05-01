@@ -1,0 +1,1 @@
+{"run-length-encoding-test" ["consistency" "decode-empty-string" "decode-mixed-whitespace" "decode-no-single-characters" "decode-lowercase" "decode-single-characters" "decode-single-and-repeated-characters"]}
