@@ -1,6 +1,8 @@
 (ns armstrong-numbers)
 
-(defn armstrong? [num] ;; <- arglist goes here
-  (= num (reduce + (map #(reduce * (repeat (count (str num)) %)) (map #(Character/digit % 10) (into [] (seq (str num)))))))
-  )
+(defn armstrong? [num]
+  (let [a (map #(Character/digit % 10) (str num))
+        b (map #(reduce * (repeat (count (str num)) %)) a)
+        c (reduce + b)]
+    (= num c)))
 ;; => #'armstrong-numbers/armstrong?
