@@ -10,14 +10,12 @@
   (= (count (clean isbn)) 10))
 
 
-(defn parse-ints [isbn]
-  (let [check (last isbn)]
+(defn isbn->nums [isbn]
+  (let [isbn (clean isbn)
+        check (last isbn)]
     (if (= check \X)
       (conj (mapv #(Character/digit % 10) (drop-last isbn)) 10)
       (mapv #(Character/digit % 10) (seq isbn)))))
-
-
-(def parse-clean (comp parse-ints clean))
 
 
 (defn valid-form [isbn]
@@ -32,8 +30,8 @@
 
 
 (defn isbn? [isbn]
-(if (valid-length? isbn)
-  (if-let [isbn (valid-form isbn)]
-    (checksum? (parse-clean isbn))
-    false)
-  false))
+  (if (valid-length? isbn)
+    (if-let [isbn (valid-form isbn)]
+      (checksum? (isbn->nums isbn))
+      false)
+    false))
