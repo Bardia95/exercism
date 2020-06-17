@@ -1,5 +1,4 @@
-(ns isbn-verifier
-  (:require [clojure.string :as str]))
+(ns isbn-verifier)
 
 
 (defn isbn->nums [isbn]
