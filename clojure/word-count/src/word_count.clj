@@ -1,10 +1,10 @@
 (ns word-count
-  (:require [clojure.string :refer [lower-case]]))
+  (:require [clojure.string :as s]))
+
 
 (defn word-count
   [s]
   (->> s
-       lower-case
-       (re-seq #"\w+|\d+")
-       (group-by identity)
-       (reduce-kv #(assoc %1 %2 (count %3)) {})))
+       s/lower-case
+       (re-seq #"\w+")
+       (frequencies)))
